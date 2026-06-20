@@ -1,0 +1,8 @@
+<app-screen title="Menu">
+  <!-- Lista linków nawigacyjnych (odpowiednik opcji Modala z RN) — D5. -->
+  <nav class="menu__list">
+    @for (link of links; track link.path) {
+      <a class="menu__link" [routerLink]="link.path">{{ link.label }}</a>
+    }
+  </nav>
+</app-screen>

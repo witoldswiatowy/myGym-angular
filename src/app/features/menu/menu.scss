@@ -1,0 +1,26 @@
+@use '../../theme/spacing';
+
+// Host wypełnia kolumnę layoutu ekranu (spójnie z innymi ekranami w `app-screen`).
+:host {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+// Pionowa lista linków (odpowiednik kolumny opcji w Modalu RN).
+.menu__list {
+  display: flex;
+  flex-direction: column;
+  gap: spacing.$sm;
+}
+
+// Pojedynczy link — wizualnie odwzorowuje „kafelek" z RN
+// (paddingy + obramowanie + zaokrąglenie z `app/menu/index.tsx`).
+.menu__link {
+  display: block;
+  padding: spacing.$sm spacing.$md;
+  border: 1px solid #ddd;
+  border-radius: spacing.$xs;
+  text-decoration: none;
+  color: inherit;
+}
