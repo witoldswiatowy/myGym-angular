@@ -1,0 +1,50 @@
+@use '../../theme/spacing' as spacing;
+
+// Twardy kolor ze źródła RN wyniesiony do zmiennej (MAPPING §4 — nie inline).
+$header-bg: orange;
+
+// Host wypełnia kolumnę layoutu ekranu (odpowiednik treści w Screen flex:1).
+:host {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+// Pasek z małym logo. Ujemne marginesy znoszą padding hosta `app-screen`
+// (spacing.md), aby tło sięgało krawędzi i górnej granicy (RN: marginHorizontal/Top -16).
+.home__header-logo {
+  margin-top: -#{spacing.$md};
+  margin-right: -#{spacing.$md};
+  margin-left: -#{spacing.$md};
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  min-height: 84px;
+  padding-bottom: spacing.$xs;
+  background-color: $header-bg;
+}
+
+// Małe logo (RN: logoImageSmall — 40×40, marginTop 4).
+.home__logo-small {
+  width: 40px;
+  height: 40px;
+  margin-top: 4px;
+  object-fit: contain;
+}
+
+// Wyśrodkowany kontener dużego logo (RN: centerLogoContainer — flex:1, center).
+.home__center-logo {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+// Duże logo (RN: logoImage — width 85%, maxWidth 340, height 300, resizeMode contain).
+.home__logo {
+  width: 85%;
+  max-width: 340px;
+  height: 300px;
+  object-fit: contain;
+}
