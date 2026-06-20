@@ -1,0 +1,36 @@
+@use '../../theme/spacing';
+
+// Kolor kafelka — przeniesiony 1:1 ze źródła RN (backgroundColor `#ffc457`).
+$item-bg: #ffc457;
+
+// Host wypełnia kolumnę layoutu ekranu (spójnie z innymi ekranami w `app-screen`).
+:host {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+// Pionowa lista kafelków (odpowiednik `View` z gap 8 + marginTop 16 w RN).
+.history__list {
+  display: flex;
+  flex-direction: column;
+  gap: spacing.$xs;
+  margin-top: spacing.$md;
+}
+
+// Pojedynczy kafelek dnia treningowego (odpowiednik `Pressable` z RN:
+// padding 12, tło `#ffc457`, borderRadius 8). Renderowany jako link nawigacyjny.
+.history__item {
+  display: flex;
+  flex-direction: column;
+  padding: spacing.$sm;
+  background-color: $item-bg;
+  border-radius: spacing.$xs;
+  text-decoration: none;
+  color: inherit;
+}
+
+// Data dnia — pogrubiona (odpowiednik `fontWeight: 'bold'` w RN).
+.history__date {
+  font-weight: bold;
+}
