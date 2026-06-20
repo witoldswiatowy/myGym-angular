@@ -1,0 +1,55 @@
+@use '../../../../theme/spacing';
+
+// Kolory przeniesione 1:1 ze źródła RN (`exercises.style.ts`).
+$row-border: #e4e7ec; // row.borderBottomColor
+$cell-text: #1d2939; // cell.color / muscleBadgeText.color
+
+// Wiersz tabeli — odpowiednik `row` (RN): flex row + dolna krawędź.
+.exercise-table-row__row {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid $row-border;
+}
+
+// Komórka — odpowiednik `cell` (RN): padding 10/8, tekst 13, ciemny kolor.
+.exercise-table-row__cell {
+  padding: 10px spacing.$xs;
+  font-size: 13px;
+  color: $cell-text;
+}
+
+// Szerokości kolumn — 1:1 ze źródłem; MUSZĄ pasować do nagłówka (krok 019).
+.exercise-table-row__col-name {
+  width: 170px;
+}
+.exercise-table-row__col-primary {
+  width: 150px;
+}
+.exercise-table-row__col-secondary {
+  width: 220px;
+}
+.exercise-table-row__col-equipment {
+  width: 180px;
+}
+.exercise-table-row__col-tags {
+  width: 160px;
+}
+
+// Komórka z badge'ami mięśni — odpowiednik `muscleCellWrap` (RN): flex wrap + gap 6.
+.exercise-table-row__muscle-wrap {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+// Badge mięśnia — odpowiednik `muscleBadge` + `muscleBadgeText` (RN): pigułka,
+// padding 8/3, tekst 12 półgruby. Kolor tła ustawiany inline (zależny od mięśnia).
+.exercise-table-row__muscle-badge {
+  border-radius: 999px;
+  padding: 3px spacing.$xs;
+  font-size: 12px;
+  font-weight: 600;
+  color: $cell-text;
+}

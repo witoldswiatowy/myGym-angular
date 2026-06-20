@@ -1,0 +1,39 @@
+<!-- Wiersz tabeli ćwiczeń — odpowiednik `View[row]` (RN). -->
+<div class="exercise-table-row__row">
+  <!-- Kolumna „Exercise" — nazwa ćwiczenia. -->
+  <span class="exercise-table-row__cell exercise-table-row__col-name">{{ exercise().name }}</span>
+
+  <!-- Kolumna „Primary muscle" — pojedynczy badge mięśnia głównego. -->
+  <div
+    class="exercise-table-row__cell exercise-table-row__col-primary exercise-table-row__muscle-wrap"
+  >
+    <span
+      class="exercise-table-row__muscle-badge"
+      [style.background-color]="primaryMuscle().color"
+      >{{ primaryMuscle().name }}</span
+    >
+  </div>
+
+  <!-- Kolumna „Secondary muscles" — lista badge'y lub „-" gdy brak (1:1 ze źródłem). -->
+  <div
+    class="exercise-table-row__cell exercise-table-row__col-secondary exercise-table-row__muscle-wrap"
+  >
+    @if (secondaryMuscles().length === 0) {
+      <span>-</span>
+    } @else {
+      @for (muscle of secondaryMuscles(); track muscle.id) {
+        <span class="exercise-table-row__muscle-badge" [style.background-color]="muscle.color">{{
+          muscle.name
+        }}</span>
+      }
+    }
+  </div>
+
+  <!-- Kolumna „Equipment" — nazwy sprzętu rozdzielone przecinkami. -->
+  <span class="exercise-table-row__cell exercise-table-row__col-equipment">{{
+    equipmentText()
+  }}</span>
+
+  <!-- Kolumna „Tags" — nazwy tagów rozdzielone przecinkami. -->
+  <span class="exercise-table-row__cell exercise-table-row__col-tags">{{ tagsText() }}</span>
+</div>
