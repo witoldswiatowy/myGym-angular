@@ -1,0 +1,12 @@
+// Host wypełnia kolumnę layoutu ekranu (spójnie z innymi ekranami w `app-screen`).
+:host {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+// Tekst placeholdera. RN `Text` nie miał własnego stylu — zerujemy domyślne
+// marginesy `<p>` przeglądarki, aby zachować wierność 1:1.
+.planner__placeholder {
+  margin: 0;
+}
