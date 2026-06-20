@@ -1,0 +1,17 @@
+<!-- Nagłówek modala — odpowiednik `modalHeader` (RN): tytuł „Add Exercise" + „Close". -->
+<div class="add-exercise-modal__header" mat-dialog-title>
+  <span class="add-exercise-modal__title">Add Exercise</span>
+  <button type="button" class="add-exercise-modal__close" (click)="onCancel()">Close</button>
+</div>
+
+<!-- Treść modala — osadzony formularz ćwiczenia (krok 021). Słowniki z `data/`,
+     wyjścia formularza mapowane na zamknięcie dialogu (save → wynik, cancel → brak). -->
+<mat-dialog-content>
+  <app-exercise-form
+    [muscles]="muscles"
+    [equipment]="equipment"
+    [tags]="tags"
+    (save)="onSave($event)"
+    (cancel)="onCancel()"
+  />
+</mat-dialog-content>

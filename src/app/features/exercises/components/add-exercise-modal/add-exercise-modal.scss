@@ -1,0 +1,29 @@
+// Kolory wyniesione 1:1 ze źródła RN (`exercises.style.ts`).
+$title-color: #101828; // RN: modalTitle.color
+$close-color: #475467; // RN: modalCloseText.color
+
+// Nagłówek modala — odpowiednik `modalHeader` (RN): tytuł i „Close" w jednym rzędzie.
+.add-exercise-modal__header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+// Tytuł — odpowiednik `modalTitle` (RN): 18px, gruby, ciemny.
+.add-exercise-modal__title {
+  font-size: 18px;
+  font-weight: 700;
+  color: $title-color;
+}
+
+// „Close" — odpowiednik `modalCloseText` (RN): 14px, półgruby, szary, wygląda jak link.
+.add-exercise-modal__close {
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  color: $close-color;
+}
