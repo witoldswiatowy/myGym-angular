@@ -78,26 +78,16 @@ export class WorkoutRepository {
   }
 
   /** Zwraca ćwiczenia danego dnia, posortowane rosnąco po `order`. */
-  async getExercisesForTrainingDay(
-    trainingDayId: string,
-  ): Promise<WorkoutExercise[]> {
-    const exercises = await this.getOrSeed(
-      STORAGE_KEYS.workoutExercises,
-      SAMPLE_WORKOUT_EXERCISES,
-    );
+  async getExercisesForTrainingDay(trainingDayId: string): Promise<WorkoutExercise[]> {
+    const exercises = await this.getOrSeed(STORAGE_KEYS.workoutExercises, SAMPLE_WORKOUT_EXERCISES);
     return exercises
       .filter((e) => e.trainingDayId === trainingDayId)
       .sort((a, b) => a.order - b.order);
   }
 
   /** Zwraca serie danego ćwiczenia treningowego, posortowane rosnąco po `index`. */
-  async getSetsForWorkoutExercise(
-    workoutExerciseId: string,
-  ): Promise<WorkoutSet[]> {
-    const sets = await this.getOrSeed(
-      STORAGE_KEYS.workoutSets,
-      SAMPLE_WORKOUT_SETS,
-    );
+  async getSetsForWorkoutExercise(workoutExerciseId: string): Promise<WorkoutSet[]> {
+    const sets = await this.getOrSeed(STORAGE_KEYS.workoutSets, SAMPLE_WORKOUT_SETS);
     return sets
       .filter((s) => s.workoutExerciseId === workoutExerciseId)
       .sort((a, b) => a.index - b.index);
@@ -105,10 +95,7 @@ export class WorkoutRepository {
 
   /** Aktualizuje pojedynczą serię (zamiana po `id`) i zapisuje całą listę. */
   async updateSet(updatedSet: WorkoutSet): Promise<void> {
-    const sets = await this.getOrSeed(
-      STORAGE_KEYS.workoutSets,
-      SAMPLE_WORKOUT_SETS,
-    );
+    const sets = await this.getOrSeed(STORAGE_KEYS.workoutSets, SAMPLE_WORKOUT_SETS);
     const updated = sets.map((s) => (s.id === updatedSet.id ? updatedSet : s));
     await this.storage.setItem(STORAGE_KEYS.workoutSets, updated);
     // opcjonalnie można usprawnić i zamienić na aktualizację tylko tego jednego
@@ -118,10 +105,7 @@ export class WorkoutRepository {
 
   /** Aktualizuje wiele serii (upsert po `id` — zamiana istniejącej LUB dodanie nowej). */
   async updateSets(updatedSets: WorkoutSet[]): Promise<void> {
-    const sets = await this.getOrSeed(
-      STORAGE_KEYS.workoutSets,
-      SAMPLE_WORKOUT_SETS,
-    );
+    const sets = await this.getOrSeed(STORAGE_KEYS.workoutSets, SAMPLE_WORKOUT_SETS);
 
     const byId = new Map(sets.map((s) => [s.id, s]));
     for (const updated of updatedSets) {
@@ -164,27 +148,20 @@ export class WorkoutRepository {
    */
   async getWorkoutDetailsWithExerciseInfo(
     trainingDayId: string,
-  ): Promise<
-    Omit<WorkoutDetails, 'exercises'> & { exercises: WorkoutExerciseWithName[] }
-  > {
+  ): Promise<Omit<WorkoutDetails, 'exercises'> & { exercises: WorkoutExerciseWithName[] }> {
     const [details, allExercises] = await Promise.all([
       this.getWorkoutDetails(trainingDayId),
       this.exerciseRepository.getAll(),
     ]);
 
-    const exerciseNameById = allExercises.reduce<Record<string, string>>(
-      (acc, exercise) => {
-        acc[exercise.id] = exercise.name;
-        return acc;
-      },
-      {},
-    );
+    const exerciseNameById = allExercises.reduce<Record<string, string>>((acc, exercise) => {
+      acc[exercise.id] = exercise.name;
+      return acc;
+    }, {});
 
     const exercisesWithName = details.exercises.map((workoutExercise) => ({
       ...workoutExercise,
-      name:
-        exerciseNameById[workoutExercise.exerciseId] ??
-        workoutExercise.exerciseId,
+      name: exerciseNameById[workoutExercise.exerciseId] ?? workoutExercise.exerciseId,
     }));
 
     return {

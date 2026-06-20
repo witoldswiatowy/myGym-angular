@@ -1,4 +1,4 @@
-export type SetType = "warmup" | "working" | "drop" | "failure";
+export type SetType = 'warmup' | 'working' | 'drop' | 'failure';
 
 //warmup - rozgrzewkowe, lekkie
 //working - docelowe, ciężkie
@@ -13,9 +13,9 @@ export interface WorkoutSet {
   type: SetType;
 
   weight?: number;
-  weightUnit?: "kg" | "lb";
+  weightUnit?: 'kg' | 'lb';
   distance?: number;
-  distanceUnit?: "m" | "km" | "ft" | "yd";
+  distanceUnit?: 'm' | 'km' | 'ft' | 'yd';
   durationSec?: number; // czas trwania, np. dla cardio
   reps?: number;
 

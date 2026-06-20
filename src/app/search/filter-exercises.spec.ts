@@ -71,13 +71,7 @@ const exRow: Exercise = {
   tagIds: [],
 };
 
-const allExercises: Exercise[] = [
-  exSoldier,
-  exLateralEn,
-  exArnoldPl,
-  exSquat,
-  exRow,
-];
+const allExercises: Exercise[] = [exSoldier, exLateralEn, exArnoldPl, exSquat, exRow];
 
 const options = (query: string) => ({
   query,

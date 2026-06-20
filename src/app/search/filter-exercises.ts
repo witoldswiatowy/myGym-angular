@@ -67,10 +67,7 @@ function buildSearchText(
   );
 }
 
-export function filterExercises(
-  exercises: Exercise[],
-  options: FilterOptions,
-): Exercise[] {
+export function filterExercises(exercises: Exercise[], options: FilterOptions): Exercise[] {
   const normalizedQuery = normalizeText(options.query);
 
   if (!normalizedQuery) {

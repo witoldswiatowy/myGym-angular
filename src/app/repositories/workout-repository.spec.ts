@@ -47,14 +47,10 @@ describe('WorkoutRepository', () => {
   });
 
   it('getExercisesForTrainingDay filtruje po trainingDayId i sortuje po order', async () => {
-    const result = await repository.getExercisesForTrainingDay(
-      'td_push_2026_04_14',
-    );
+    const result = await repository.getExercisesForTrainingDay('td_push_2026_04_14');
 
     // Wszystkie należą do tego dnia.
-    expect(result.every((e) => e.trainingDayId === 'td_push_2026_04_14')).toBe(
-      true,
-    );
+    expect(result.every((e) => e.trainingDayId === 'td_push_2026_04_14')).toBe(true);
     // Posortowane rosnąco po `order`.
     expect(result.map((e) => e.order)).toEqual([0, 1, 2, 3, 4]);
     expect(result.map((e) => e.id)).toEqual([
@@ -154,8 +150,7 @@ describe('WorkoutRepository', () => {
   });
 
   it('getWorkoutDetailsWithExerciseInfo dokleja name z ExerciseRepository, z fallbackiem do exerciseId', async () => {
-    const details =
-      await repository.getWorkoutDetailsWithExerciseInfo('td_push_2026_04_14');
+    const details = await repository.getWorkoutDetailsWithExerciseInfo('td_push_2026_04_14');
 
     const first = details.exercises.find((e) => e.id === 'we_push_1');
     // overhead_press → nazwa ze słownika ćwiczeń.
@@ -169,10 +164,7 @@ describe('WorkoutRepository', () => {
       exerciseId: 'unknown_exercise',
       order: 0,
     };
-    await storage.setItem('workout-exercises.v1', [
-      ...SAMPLE_WORKOUT_EXERCISES,
-      orphan,
-    ]);
+    await storage.setItem('workout-exercises.v1', [...SAMPLE_WORKOUT_EXERCISES, orphan]);
     await storage.setItem('training-days.v1', [
       ...SAMPLE_TRAINING_DAYS,
       {
@@ -182,8 +174,7 @@ describe('WorkoutRepository', () => {
       },
     ]);
 
-    const orphanDetails =
-      await repository.getWorkoutDetailsWithExerciseInfo('td_orphan');
+    const orphanDetails = await repository.getWorkoutDetailsWithExerciseInfo('td_orphan');
     expect(orphanDetails.exercises[0].name).toBe('unknown_exercise');
   });
 
@@ -195,14 +186,10 @@ describe('WorkoutRepository', () => {
 
     await repository.resetToSeed();
 
-    expect(await storage.getItem<TrainingDay[]>('training-days.v1')).toEqual(
-      SAMPLE_TRAINING_DAYS,
+    expect(await storage.getItem<TrainingDay[]>('training-days.v1')).toEqual(SAMPLE_TRAINING_DAYS);
+    expect(await storage.getItem<WorkoutExercise[]>('workout-exercises.v1')).toEqual(
+      SAMPLE_WORKOUT_EXERCISES,
     );
-    expect(
-      await storage.getItem<WorkoutExercise[]>('workout-exercises.v1'),
-    ).toEqual(SAMPLE_WORKOUT_EXERCISES);
-    expect(await storage.getItem<WorkoutSet[]>('workout-sets.v1')).toEqual(
-      SAMPLE_WORKOUT_SETS,
-    );
+    expect(await storage.getItem<WorkoutSet[]>('workout-sets.v1')).toEqual(SAMPLE_WORKOUT_SETS);
   });
 });
