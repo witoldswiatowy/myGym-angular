@@ -1,0 +1,11 @@
+@if (title()) {
+  <!-- Pasek z logo „myGym" (odpowiednik headerLogoContainer w RN). -->
+  <div class="screen__header-logo">
+    <span class="screen__logo">myGym</span>
+  </div>
+  <!-- Tytuł ekranu (odpowiednik headerTitle w RN). -->
+  <h1 class="screen__title">{{ title() }}</h1>
+}
+
+<!-- Projekcja treści dziecka (odpowiednik `children` z RN). -->
+<ng-content />

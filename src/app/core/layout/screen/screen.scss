@@ -1,0 +1,47 @@
+@use '../../../theme/spacing' as spacing;
+
+// Twarde kolory ze źródła RN wyniesione do zmiennych (MAPPING §4 — nie inline).
+$header-bg: orange;
+$title-bg: #ffc457;
+
+// Kontener ekranu (odpowiednik View flex:1 + padding spacing.md w RN).
+:host {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: spacing.$md;
+}
+
+// Pasek z logo. Ujemne marginesy znoszą padding hosta, dzięki czemu tło
+// rozciąga się na całą szerokość i do górnej krawędzi (jak w RN: marginHorizontal/Top -16).
+.screen__header-logo {
+  margin-top: -#{spacing.$md};
+  margin-right: -#{spacing.$md};
+  margin-left: -#{spacing.$md};
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  min-height: 84px;
+  padding-bottom: spacing.$xs;
+  background-color: $header-bg;
+}
+
+// Tekst logo „myGym".
+.screen__logo {
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 20px;
+  text-align: center;
+}
+
+// Tytuł ekranu.
+.screen__title {
+  margin: 0;
+  margin-top: spacing.$xs;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 32px;
+  text-align: center;
+  background-color: $title-bg;
+}
