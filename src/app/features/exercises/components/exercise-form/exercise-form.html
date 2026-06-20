@@ -1,0 +1,90 @@
+<!-- Formularz dodawania ćwiczenia — odwzorowanie `exercise-form.tsx` (RN). -->
+<div class="exercise-form">
+  <!-- Nazwa PL (RN: TextInput) -->
+  <mat-form-field class="exercise-form__field" appearance="outline">
+    <mat-label>Nazwa cwiczenia (PL)</mat-label>
+    <input
+      matInput
+      [value]="name()"
+      (input)="setName($event)"
+      placeholder="np. wyciskanie hantli"
+    />
+  </mat-form-field>
+
+  <!-- Nazwa EN (RN: TextInput) -->
+  <mat-form-field class="exercise-form__field" appearance="outline">
+    <mat-label>Name of exercise (EN)</mat-label>
+    <input
+      matInput
+      [value]="nameEn()"
+      (input)="setNameEn($event)"
+      placeholder="e.g. dumbbell press"
+    />
+  </mat-form-field>
+
+  <!-- Mięsień główny — pojedynczy wybór (RN: chipsy single-select) -->
+  <mat-form-field class="exercise-form__field" appearance="outline">
+    <mat-label>Primary muscle</mat-label>
+    <mat-select [value]="primaryMuscleId()" (selectionChange)="onPrimaryMuscleChange($event)">
+      @for (muscle of muscles(); track muscle.id) {
+        <mat-option [value]="muscle.id">{{ muscle.name }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
+  <!-- Mięśnie dodatkowe — wielokrotny wybór; mięsień główny zablokowany (RN: chipsy toggle) -->
+  <div class="exercise-form__group">
+    <span class="exercise-form__group-label">Secondary muscles</span>
+    <div class="exercise-form__options">
+      @for (muscle of muscles(); track muscle.id) {
+        <mat-checkbox
+          [checked]="secondaryMuscleIds().includes(muscle.id)"
+          [disabled]="muscle.id === primaryMuscleId()"
+          (change)="toggleSecondaryMuscle(muscle.id)"
+        >
+          {{ muscle.name }}
+        </mat-checkbox>
+      }
+    </div>
+  </div>
+
+  <!-- Sprzęt — wielokrotny wybór (RN: chipsy toggle) -->
+  <div class="exercise-form__group">
+    <span class="exercise-form__group-label">Equipment</span>
+    <div class="exercise-form__options">
+      @for (item of equipment(); track item.id) {
+        <mat-checkbox
+          [checked]="equipmentIds().includes(item.id)"
+          (change)="toggleEquipment(item.id)"
+        >
+          {{ item.name }}
+        </mat-checkbox>
+      }
+    </div>
+  </div>
+
+  <!-- Tagi — wielokrotny wybór (RN: chipsy toggle) -->
+  <div class="exercise-form__group">
+    <span class="exercise-form__group-label">Tags</span>
+    <div class="exercise-form__options">
+      @for (item of tags(); track item.id) {
+        <mat-checkbox [checked]="tagIds().includes(item.id)" (change)="toggleTag(item.id)">
+          {{ item.name }}
+        </mat-checkbox>
+      }
+    </div>
+  </div>
+
+  <!-- Przyciski (RN: Cancel + Save z tekstem „Saving..." podczas zapisu) -->
+  <div class="exercise-form__buttons">
+    <button mat-stroked-button type="button" (click)="cancel.emit()">Cancel</button>
+    <button
+      mat-flat-button
+      type="button"
+      [disabled]="!isValid() || submitting()"
+      (click)="handleSave()"
+    >
+      {{ submitting() ? 'Saving...' : 'Save' }}
+    </button>
+  </div>
+</div>

@@ -1,0 +1,48 @@
+@use '../../../../theme/spacing';
+
+// Kolor etykiety grup — 1:1 ze źródła RN (`exercises.style.ts` → `formLabel.color`).
+$group-label-color: #344054;
+
+// Kontener formularza — odpowiednik `formContent` (RN): pionowy układ z odstępem.
+.exercise-form {
+  display: flex;
+  flex-direction: column;
+  gap: spacing.$sm; // RN: gap 14 → najbliższy token (12px)
+  padding-bottom: spacing.$xs; // RN: paddingBottom 8
+}
+
+// Pole tekstowe/select rozciągnięte na całą szerokość.
+.exercise-form__field {
+  width: 100%;
+}
+
+// Grupa wyboru wielokrotnego (etykieta + opcje) — odpowiednik `formFieldGroup` (RN).
+.exercise-form__group {
+  display: flex;
+  flex-direction: column;
+  gap: spacing.$xs; // RN: gap 8
+}
+
+// Etykieta grupy — odpowiednik `formLabel` (RN): 14px, półgruba, ciemnoszara.
+.exercise-form__group-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: $group-label-color;
+}
+
+// Lista opcji — odpowiednik `formOptionsWrap` (RN): zawijany rząd z odstępem.
+.exercise-form__options {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: spacing.$xs; // RN: gap 8
+}
+
+// Rząd przycisków — odpowiednik `formButtonsRow` (RN): wyrównany do prawej.
+.exercise-form__buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: spacing.$xs; // RN: gap 10 → najbliższy token (8px)
+  margin-top: spacing.$xs;
+}
