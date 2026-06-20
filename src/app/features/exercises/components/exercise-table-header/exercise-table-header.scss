@@ -1,0 +1,53 @@
+@use '../../../../theme/spacing';
+
+// Kolory przeniesione 1:1 ze źródła RN (`exercises.style.ts`).
+$header-bg: #f2f4f7; // headerRow.backgroundColor
+$row-border: #e4e7ec; // row.borderBottomColor
+$header-text-color: #101828; // headerText.color (przesłania cell.color w nagłówku)
+
+// Wiersz nagłówka — odpowiednik `[row, headerRow]` (RN): flex row + dolna krawędź
+// + tło + zaokrąglone górne rogi.
+.exercise-table-header__row {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid $row-border;
+  background-color: $header-bg;
+  border-top-left-radius: spacing.$xs;
+  border-top-right-radius: spacing.$xs;
+}
+
+// Komórka nagłówka — odpowiednik `[cell, headerText]` (RN): padding 10/8,
+// rozmiar tekstu 13 i pogrubiony, ciemny kolor nagłówka.
+.exercise-table-header__cell {
+  padding: 10px spacing.$xs;
+  font-size: 13px;
+  font-weight: 700;
+  color: $header-text-color;
+}
+
+// Reset natywnego przycisku dla klikalnych kolumn (Pressable → button): bez tła
+// i obramowania, kursor wskazujący, dziedziczenie typografii, tekst do lewej.
+button.exercise-table-header__cell {
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+// Szerokości kolumn — 1:1 ze źródłem (colName/colPrimary/colSecondary/... w RN).
+.exercise-table-header__col-name {
+  width: 170px;
+}
+.exercise-table-header__col-primary {
+  width: 150px;
+}
+.exercise-table-header__col-secondary {
+  width: 220px;
+}
+.exercise-table-header__col-equipment {
+  width: 180px;
+}
+.exercise-table-header__col-tags {
+  width: 160px;
+}
