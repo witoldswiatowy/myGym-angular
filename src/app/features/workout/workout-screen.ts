@@ -2,10 +2,7 @@ import { Injectable, Signal, effect, inject, signal } from '@angular/core';
 
 import { TrainingDay } from '../../models/training-day';
 import { WorkoutSet } from '../../models/workout-set';
-import {
-  WorkoutExerciseWithName,
-  WorkoutRepository,
-} from '../../repositories/workout-repository';
+import { WorkoutExerciseWithName, WorkoutRepository } from '../../repositories/workout-repository';
 import { debouncedSignal } from '../../shared/utils/debounce';
 
 /**
@@ -113,8 +110,10 @@ export class WorkoutScreen {
   readonly weightUnitSelectTarget = this.weightUnitSelectTargetState.asReadonly();
 
   // By nie zapisywać przy każdym szybkim tapnięciu — dopiero po „uspokojeniu" zmian.
-  private readonly debouncedSetsByExerciseId: Signal<Record<string, SetForm[]>> =
-    debouncedSignal(this.setsByExerciseIdState, 500);
+  private readonly debouncedSetsByExerciseId: Signal<Record<string, SetForm[]>> = debouncedSignal(
+    this.setsByExerciseIdState,
+    500,
+  );
 
   constructor() {
     // Efekt ładowania danych (odpowiednik `useEffect` z zależnością [trainingDayId]).
@@ -122,25 +121,21 @@ export class WorkoutScreen {
       const trainingDayId = this.trainingDayIdState();
       if (!trainingDayId) return;
 
-      this.repository
-        .getWorkoutDetailsWithExerciseInfo(trainingDayId)
-        .then((details) => {
-          this.dayState.set(details.day);
-          this.exercisesState.set(details.exercises);
-          this.setsByExerciseIdState.set(
-            Object.fromEntries(
-              details.exercises.map((exercise) => {
-                const rawSets = details.setsByExerciseId[exercise.id] ?? [];
-                const mappedSets = rawSets.length
-                  ? rawSets.map(mapSet)
-                  : [0, 1, 2].map((index) =>
-                      mapSetOrCreate(undefined, exercise.id, index),
-                    );
-                return [exercise.id, mappedSets];
-              }),
-            ),
-          );
-        });
+      this.repository.getWorkoutDetailsWithExerciseInfo(trainingDayId).then((details) => {
+        this.dayState.set(details.day);
+        this.exercisesState.set(details.exercises);
+        this.setsByExerciseIdState.set(
+          Object.fromEntries(
+            details.exercises.map((exercise) => {
+              const rawSets = details.setsByExerciseId[exercise.id] ?? [];
+              const mappedSets = rawSets.length
+                ? rawSets.map(mapSet)
+                : [0, 1, 2].map((index) => mapSetOrCreate(undefined, exercise.id, index));
+              return [exercise.id, mappedSets];
+            }),
+          ),
+        );
+      });
     });
 
     // Efekt autozapisu po debounce (odpowiednik `useEffect`
@@ -177,18 +172,12 @@ export class WorkoutScreen {
   }
 
   /** Mutuje (immutowalnie) tylko wskazaną serię danego ćwiczenia, nakładając `patch`. */
-  updateSetField(
-    exerciseId: string,
-    setId: string,
-    patch: Partial<SetForm>,
-  ): void {
+  updateSetField(exerciseId: string, setId: string, patch: Partial<SetForm>): void {
     this.setsByExerciseIdState.update((prev) => {
       const currentSets = prev[exerciseId] ?? [];
       return {
         ...prev,
-        [exerciseId]: currentSets.map((s) =>
-          s.id === setId ? { ...s, ...patch } : s,
-        ),
+        [exerciseId]: currentSets.map((s) => (s.id === setId ? { ...s, ...patch } : s)),
       };
     });
   }

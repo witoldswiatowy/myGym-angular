@@ -3,10 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { WorkoutScreen } from './workout-screen';
-import {
-  WorkoutExerciseWithName,
-  WorkoutRepository,
-} from '../../repositories/workout-repository';
+import { WorkoutExerciseWithName, WorkoutRepository } from '../../repositories/workout-repository';
 import { TrainingDay } from '../../models/training-day';
 import { WorkoutSet } from '../../models/workout-set';
 

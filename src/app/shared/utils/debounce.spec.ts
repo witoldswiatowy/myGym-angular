@@ -24,9 +24,7 @@ describe('debouncedSignal', () => {
 
   it('emituje tylko OSTATNIĄ wartość po delayMs przy szybkich kolejnych zmianach', () => {
     const source = signal('a');
-    const debounced = TestBed.runInInjectionContext(() =>
-      debouncedSignal(source, 200),
-    );
+    const debounced = TestBed.runInInjectionContext(() => debouncedSignal(source, 200));
 
     // Na starcie sygnał ma wartość źródła.
     expect(debounced()).toBe('a');
@@ -57,9 +55,7 @@ describe('debouncedSignal', () => {
 
   it('działa generycznie dla typu liczbowego', () => {
     const source = signal(0);
-    const debounced = TestBed.runInInjectionContext(() =>
-      debouncedSignal(source, 100),
-    );
+    const debounced = TestBed.runInInjectionContext(() => debouncedSignal(source, 100));
 
     source.set(1);
     flushEffects();
