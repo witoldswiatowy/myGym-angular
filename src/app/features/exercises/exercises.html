@@ -1,0 +1,57 @@
+<!-- Ekran biblioteki ćwiczeń — odpowiednik renderu `ExercisesScreen` (RN). -->
+<app-screen title="Exercise Library">
+  <div class="exercises__content">
+    <!-- Pole wyszukiwania (RN: TextInput + onChangeText) → MatInput; stan w sygnale. -->
+    <mat-form-field appearance="outline" class="exercises__search">
+      <mat-label>Szukaj</mat-label>
+      <input
+        matInput
+        type="text"
+        [value]="searchQuery()"
+        (input)="onSearchInput($event)"
+        placeholder="Szukaj: ćwiczenie, mięsień, alias..."
+        autocomplete="off"
+        autocapitalize="none"
+      />
+    </mat-form-field>
+
+    <!-- Przewijanie poziome tabeli (RN: ScrollView horizontal) — szerokość kolumn stała. -->
+    <div class="exercises__table-scroll">
+      <div class="exercises__table">
+        <!-- Nagłówek z sortowaniem (krok 019). -->
+        <app-exercise-table-header
+          [sortKey]="sortKey()"
+          [sortDir]="sortDir()"
+          (sort)="handleSort($event)"
+        />
+
+        <!-- Lista wierszy (RN: FlatList) → zwykłe @for (D12, bez CDK Virtual Scroll).
+             Wiersze rosną do treści, bez przycinania. Pusty stan = „No results found”. -->
+        @if (sortedExercises().length === 0) {
+          <p class="exercises__no-results">No results found</p>
+        } @else {
+          <div class="exercises__list">
+            @for (item of sortedExercises(); track item.id) {
+              <app-exercise-table-row
+                class="exercises__row"
+                [exercise]="item"
+                [muscleNameById]="muscleNameById"
+                [muscleColorById]="muscleColorById"
+                [equipmentNameById]="equipmentNameById"
+                [tagNameById]="tagNameById"
+              />
+            }
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- Akcje: dodanie ćwiczenia (modal) i reset do danych seed (1:1 ze źródłem RN). -->
+    <div class="exercises__actions">
+      <button type="button" mat-flat-button color="primary" (click)="openAddModal()">
+        + Add exercise
+      </button>
+      <button type="button" mat-button (click)="resetToSeed()">Reset do seed</button>
+    </div>
+  </div>
+</app-screen>
