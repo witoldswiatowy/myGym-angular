@@ -1,0 +1,16 @@
+<!-- Karta opcji — odpowiednik `typeModalCard` (RN). Każda pozycja to klikalna opcja
+     typu serii (RN: `typeOptionRow`/`typeOptionText`). Tekst „Label (type)" 1:1 z RN.
+     Podświetlenie aktywnej opcji to dodatek (źródło RN go nie miało). -->
+<div class="workout-set-type-modal">
+  @for (option of options; track option.type) {
+    <button
+      type="button"
+      class="workout-set-type-modal__option"
+      [class.workout-set-type-modal__option--active]="option.type === activeType"
+      [attr.aria-current]="option.type === activeType ? 'true' : null"
+      (click)="select(option.type)"
+    >
+      {{ option.label }} ({{ option.type }})
+    </button>
+  }
+</div>

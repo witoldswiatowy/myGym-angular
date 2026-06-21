@@ -1,0 +1,44 @@
+@use '../../../../theme/spacing';
+
+// Kolory wyniesione 1:1 ze źródła RN (`workout.style.ts`).
+$card-bg: #fff; // typeModalCard.backgroundColor
+$row-border: #f1f1f1; // typeOptionRow.borderBottomColor
+$option-text: #222; // typeOptionText.color
+
+// Podświetlenie aktywnej opcji — DODATEK ponad źródło RN (które nie miało highlightu
+// ani kolorów per-typ). Reużywamy istniejącego koloru linii jako subtelnego tła.
+$option-active-bg: #f1f1f1; // = $row-border (źródło RN), brak osobnego koloru highlightu
+
+// Karta opcji — odpowiednik `typeModalCard` (RN): wąska, biała, zaokrąglona.
+.workout-set-type-modal {
+  max-width: 180px; // typeModalCard.maxWidth
+  border-radius: 8px; // typeModalCard.borderRadius
+  background-color: $card-bg;
+  overflow: hidden; // typeModalCard.overflow
+}
+
+// Pojedyncza opcja — odpowiednik `typeOptionRow` + `typeOptionText` (RN).
+.workout-set-type-modal__option {
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: none;
+  border-bottom: 1px solid $row-border; // typeOptionRow.borderBottomColor/Width
+  background: none;
+  cursor: pointer;
+  padding: spacing.$sm spacing.$md; // RN: paddingVertical sm, paddingHorizontal md
+  font-size: 15px; // typeOptionText.fontSize
+  color: $option-text; // typeOptionText.color
+
+  // RN: ostatni wiersz również ma borderBottom — ale wizualnie chowa go overflow karty.
+  // W web ukrywamy ostatnią linię, by uniknąć podwójnej krawędzi.
+  &:last-child {
+    border-bottom: none;
+  }
+
+  // Podświetlenie aktywnej opcji (DODATEK ponad źródło RN).
+  &--active {
+    background-color: $option-active-bg;
+    font-weight: 700;
+  }
+}
