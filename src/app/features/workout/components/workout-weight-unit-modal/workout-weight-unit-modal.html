@@ -1,0 +1,17 @@
+<!-- Karta opcji — odpowiednik `typeModalCard` (RN, współdzielony styl z modalem typu serii).
+     Każda pozycja to klikalna opcja jednostki (RN: `typeOptionRow`/`typeOptionText`).
+     Tekst = sama jednostka (`kg`/`lb`) 1:1 z RN. Podświetlenie aktywnej opcji to dodatek
+     (źródło RN go nie miało). -->
+<div class="workout-weight-unit-modal">
+  @for (unit of options; track unit) {
+    <button
+      type="button"
+      class="workout-weight-unit-modal__option"
+      [class.workout-weight-unit-modal__option--active]="unit === activeUnit"
+      [attr.aria-current]="unit === activeUnit ? 'true' : null"
+      (click)="select(unit)"
+    >
+      {{ unit }}
+    </button>
+  }
+</div>

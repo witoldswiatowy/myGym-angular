@@ -1,5 +1,10 @@
 export type SetType = 'warmup' | 'working' | 'drop' | 'failure';
 
+// Jednostka ciężaru — wyniesiona 1:1 ze źródła RN (`WeightUnit` w
+// `workout-weight-unit-modal.tsx`). Eksportowany alias spójny ze stylem `SetType`,
+// reużywany przez modal wyboru jednostki (krok 026).
+export type WeightUnit = 'kg' | 'lb';
+
 //warmup - rozgrzewkowe, lekkie
 //working - docelowe, ciężkie
 //drop - drop set, czyli zmniejszamy ciężar i robimy kolejną serię, bez odpoczynku, aż do kolejnego upadku mięśniowego
@@ -13,7 +18,7 @@ export interface WorkoutSet {
   type: SetType;
 
   weight?: number;
-  weightUnit?: 'kg' | 'lb';
+  weightUnit?: WeightUnit;
   distance?: number;
   distanceUnit?: 'm' | 'km' | 'ft' | 'yd';
   durationSec?: number; // czas trwania, np. dla cardio
