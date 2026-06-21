@@ -1,0 +1,73 @@
+@use '../../../../theme/spacing';
+
+// Kolory przeniesione 1:1 ze źródła RN (`workout.style.ts`).
+$select-border: #d9d9d9; // typeSelectButton.borderColor
+$select-bg: #fff; // typeSelectButton.backgroundColor
+$select-pressed-bg: #f3f3f3; // typeSelectButtonPressed.backgroundColor
+$select-label: #333; // typeSelectLabel.color
+$input-border: #d9d9d9; // inlineNumberInput.borderColor
+
+// Wiersz serii — odpowiednik `setRow` (RN): flex row, gap xs, lekki margines górny.
+.workout-set-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: spacing.$xs;
+  margin-top: 2px;
+}
+
+// Klikalny przycisk typu/jednostki — odpowiednik `typeSelectButton` (RN): wys. 25,
+// ramka, zaokrąglenie 6, białe tło, treść wyśrodkowana.
+.workout-set-row__select-button {
+  height: 25px;
+  border: 1px solid $select-border;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $select-bg;
+  padding: 0;
+  cursor: pointer;
+
+  // Stan wciśnięcia (RN: typeSelectButtonPressed) → web odpowiednik `:active`.
+  &:active {
+    background-color: $select-pressed-bg;
+  }
+}
+
+// Szerokości przycisków — 1:1 ze źródłem (typeSelectButtonType / typeSelectButtonUnit).
+.workout-set-row__select-button--type {
+  width: 60px;
+}
+.workout-set-row__select-button--unit {
+  width: 30px;
+}
+
+// Etykieta przycisku — odpowiednik `typeSelectLabel` (RN): 13px, półgruby, ciemny.
+.workout-set-row__select-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: $select-label;
+}
+
+// Pole liczbowe inline — odpowiednik `inlineNumberInput` (RN): min. 30, ramka,
+// zaokrąglenie 6, padding 8/4, tekst 14.
+.workout-set-row__number-input {
+  min-width: 30px;
+  width: 30px;
+  border: 1px solid $input-border;
+  border-radius: 6px;
+  padding: 4px spacing.$xs;
+  font-size: 14px;
+  box-sizing: content-box;
+}
+
+// Tekst pomocniczy („ x ", „powt.") — odpowiednik `setText` (RN): 14px.
+.workout-set-row__text {
+  font-size: 14px;
+}
+
+// Checkbox „done" — odpowiednik `doneCheckbox` (RN): dosunięty do prawej krawędzi.
+.workout-set-row__done {
+  margin-left: auto;
+}

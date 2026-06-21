@@ -1,0 +1,51 @@
+<!-- Wiersz serii — odpowiednik `setRow` (RN): flex row z polami i checkboxem. -->
+<div class="workout-set-row">
+  <!-- Przycisk typu serii: klik emituje żądanie otwarcia selektora typu (modal w kroku 025). -->
+  <button
+    type="button"
+    class="workout-set-row__select-button workout-set-row__select-button--type"
+    (click)="openTypeSelect.emit()"
+  >
+    <span class="workout-set-row__select-label">{{ typeLabel() }}</span>
+  </button>
+
+  <!-- Pole ciężaru: dozwolone cyfry, kropka i przecinek (1:1 z RN: keyboardType decimal-pad). -->
+  <input
+    class="workout-set-row__number-input"
+    type="text"
+    inputmode="decimal"
+    placeholder="0"
+    [value]="set().weight"
+    (input)="onWeightInput($event)"
+  />
+
+  <!-- Przycisk jednostki ciężaru: klik emituje żądanie otwarcia selektora jednostki (modal 026). -->
+  <button
+    type="button"
+    class="workout-set-row__select-button workout-set-row__select-button--unit"
+    (click)="openWeightUnitSelect.emit()"
+  >
+    <span class="workout-set-row__select-label">{{ set().weightUnit }}</span>
+  </button>
+
+  <span class="workout-set-row__text"> x </span>
+
+  <!-- Pole powtórzeń: tylko cyfry (1:1 z RN: keyboardType number-pad). -->
+  <input
+    class="workout-set-row__number-input"
+    type="text"
+    inputmode="numeric"
+    placeholder="0"
+    [value]="set().reps"
+    (input)="onRepsInput($event)"
+  />
+
+  <span class="workout-set-row__text">powt.</span>
+
+  <!-- Checkbox „done" (Material, D2): zmiana emituje changeDone. -->
+  <mat-checkbox
+    class="workout-set-row__done"
+    [checked]="set().done"
+    (change)="onDoneChange($event)"
+  />
+</div>
