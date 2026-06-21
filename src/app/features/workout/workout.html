@@ -1,0 +1,47 @@
+<!-- Ekran treningu dnia — odpowiednik renderu `WorkoutScreen` (RN, app/workout/index.tsx). -->
+@if (workoutScreen.day(); as day) {
+  <app-screen title="Workout Day">
+    <div class="workout__content">
+      <!-- Powrót (RN: Pressable → router.back()). -->
+      <button type="button" class="workout__back" (click)="goBack()">← Wróć</button>
+
+      <!-- Nagłówek dnia: data + dzień tygodnia po polsku (1:1 ze źródłem RN). -->
+      <h2 class="workout__title">{{ day.date }} {{ weekday(day.date) }}</h2>
+
+      <!-- Notatka i czas trwania renderowane warunkowo (1:1 ze źródłem RN). -->
+      @if (day.note) {
+        <p class="workout__note">{{ day.note }}</p>
+      }
+      @if (day.durationMin) {
+        <p class="workout__meta">Czas: {{ day.durationMin }} min</p>
+      }
+
+      <!-- Lista ćwiczeń, każde z własnymi seriami (RN: ScrollView + map). -->
+      <div class="workout__exercises">
+        @for (ex of workoutScreen.exercises(); track ex.id; let i = $index) {
+          <div class="workout__exercise-card">
+            <p class="workout__exercise-name">{{ i + 1 }}. {{ ex.name }}</p>
+
+            <!-- Serie ćwiczenia → wiersz serii (krok 024). Outputy podpięte do akcji serwisu. -->
+            @for (set of workoutScreen.setsByExerciseId()[ex.id]; track set.id) {
+              <app-workout-set-row
+                [set]="set"
+                [typeLabel]="setTypeLabel[set.type]"
+                (openTypeSelect)="openTypeSelect(ex.id, set)"
+                (openWeightUnitSelect)="openWeightUnitSelect(ex.id, set)"
+                (changeWeight)="onChangeWeight(ex.id, set.id, $event)"
+                (changeReps)="onChangeReps(ex.id, set.id, $event)"
+                (changeDone)="onChangeDone(ex.id, set.id, $event)"
+              />
+            }
+          </div>
+        }
+      </div>
+    </div>
+  </app-screen>
+} @else {
+  <!-- Fallback gdy brak dnia (RN: Screen bez tytułu + komunikat). -->
+  <app-screen>
+    <p class="workout__empty">Nie znaleziono dnia treningowego.</p>
+  </app-screen>
+}

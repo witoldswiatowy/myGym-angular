@@ -1,0 +1,77 @@
+@use '../../theme/spacing';
+
+// Kolory przeniesione 1:1 ze źródła RN (`workout.style.ts`).
+$back-text: #333; // backButtonText.color
+$note-text: #555; // note.color
+$meta-text: #888; // meta.color
+$card-bg: #fff8ee; // exerciseCard.backgroundColor
+$card-accent: orange; // exerciseCard.borderLeftColor
+
+// Kontener treści — pionowy układ z odstępami między sekcjami.
+.workout__content {
+  display: flex;
+  flex-direction: column;
+  gap: spacing.$sm;
+  padding: spacing.$md;
+}
+
+// Przycisk powrotu — odpowiednik `backButton` (RN): wyrównany do lewej, dyskretny.
+.workout__back {
+  align-self: flex-start;
+  margin-top: spacing.$sm;
+  padding: 0;
+  border: none;
+  background: none;
+  color: $back-text;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+// Tytuł dnia (RN: headerTitle ze stylu globalnego ekranu).
+.workout__title {
+  margin: 0;
+  text-align: center;
+}
+
+// Notatka dnia — odpowiednik `note` (RN): wyśrodkowana, stonowany kolor.
+.workout__note {
+  margin: spacing.$xs 0 0;
+  text-align: center;
+  color: $note-text;
+}
+
+// Czas trwania — odpowiednik `meta` (RN): mniejszy, jeszcze bardziej stonowany.
+.workout__meta {
+  margin: 4px 0 0;
+  text-align: center;
+  color: $meta-text;
+  font-size: 12px;
+}
+
+// Lista ćwiczeń — odpowiednik `contentContainerStyle` ScrollView (RN): odstęp sm.
+.workout__exercises {
+  display: flex;
+  flex-direction: column;
+  gap: spacing.$sm;
+  margin-top: spacing.$md;
+}
+
+// Karta ćwiczenia — odpowiednik `exerciseCard` (RN): tło, zaokrąglenie, lewy akcent.
+.workout__exercise-card {
+  padding: spacing.$sm;
+  border-radius: 8px;
+  border-left: 4px solid $card-accent;
+  background-color: $card-bg;
+}
+
+// Nazwa ćwiczenia — odpowiednik `exerciseName` (RN): pogrubiona, odstęp dolny.
+.workout__exercise-name {
+  margin: 0 0 6px;
+  font-weight: bold;
+}
+
+// Komunikat pustego stanu (brak dnia treningowego).
+.workout__empty {
+  padding: spacing.$md;
+  text-align: center;
+}
