@@ -87,9 +87,7 @@ describe('ExerciseTableRow', () => {
       '.exercise-table-row__col-secondary',
     ) as HTMLElement;
     expect(secondary.textContent?.trim()).toBe('-');
-    expect(
-      secondary.querySelectorAll('.exercise-table-row__muscle-badge').length,
-    ).toBe(0);
+    expect(secondary.querySelectorAll('.exercise-table-row__muscle-badge').length).toBe(0);
   });
 
   it('łączy nazwy sprzętu i tagów przecinkami (resolveMany 1:1)', () => {

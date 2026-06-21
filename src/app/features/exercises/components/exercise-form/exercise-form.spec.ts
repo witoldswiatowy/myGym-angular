@@ -11,7 +11,13 @@ describe('ExerciseForm', () => {
   const muscles: Muscle[] = [
     { id: 'chest', name: 'klatka', nameEn: 'Chest', colorHex: '#FF0000', muscleGroupId: 'chest' },
     { id: 'back', name: 'plecy', nameEn: 'Back', colorHex: '#00FF00', muscleGroupId: 'back' },
-    { id: 'triceps', name: 'triceps', nameEn: 'Triceps', colorHex: '#0000FF', muscleGroupId: 'arms' },
+    {
+      id: 'triceps',
+      name: 'triceps',
+      nameEn: 'Triceps',
+      colorHex: '#0000FF',
+      muscleGroupId: 'arms',
+    },
   ];
   const equipment: Equipment[] = [
     { id: 'barbell', name: 'sztanga', nameEn: 'Barbell' },
@@ -51,10 +57,7 @@ describe('ExerciseForm', () => {
   }
 
   // Zwraca przycisk po widocznym tekście („Save" / „Cancel").
-  function buttonByText(
-    fixture: ComponentFixture<ExerciseForm>,
-    text: string,
-  ): HTMLButtonElement {
+  function buttonByText(fixture: ComponentFixture<ExerciseForm>, text: string): HTMLButtonElement {
     const buttons = Array.from(
       fixture.nativeElement.querySelectorAll('button'),
     ) as HTMLButtonElement[];

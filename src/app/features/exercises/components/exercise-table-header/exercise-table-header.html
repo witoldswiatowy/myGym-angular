@@ -5,14 +5,18 @@
     type="button"
     class="exercise-table-header__cell exercise-table-header__col-name"
     (click)="emitSort('name')"
-  >Exercise{{ sortKey() === 'name' ? arrow() : '' }}</button>
+  >
+    Exercise{{ sortKey() === 'name' ? arrow() : '' }}
+  </button>
 
   <!-- Kolumna „Primary muscle" — sortowanie po mięśniu głównym. -->
   <button
     type="button"
     class="exercise-table-header__cell exercise-table-header__col-primary"
     (click)="emitSort('primaryMuscle')"
-  >Primary muscle{{ sortKey() === 'primaryMuscle' ? arrow() : '' }}</button>
+  >
+    Primary muscle{{ sortKey() === 'primaryMuscle' ? arrow() : '' }}
+  </button>
 
   <!-- Kolumna „Secondary muscles" — statyczny nagłówek bez sortowania (1:1). -->
   <span class="exercise-table-header__cell exercise-table-header__col-secondary"
@@ -24,12 +28,16 @@
     type="button"
     class="exercise-table-header__cell exercise-table-header__col-equipment"
     (click)="emitSort('equipment')"
-  >Equipment{{ sortKey() === 'equipment' ? arrow() : '' }}</button>
+  >
+    Equipment{{ sortKey() === 'equipment' ? arrow() : '' }}
+  </button>
 
   <!-- Kolumna „Tags" — sortowanie po tagach. -->
   <button
     type="button"
     class="exercise-table-header__cell exercise-table-header__col-tags"
     (click)="emitSort('tags')"
-  >Tags{{ sortKey() === 'tags' ? arrow() : '' }}</button>
+  >
+    Tags{{ sortKey() === 'tags' ? arrow() : '' }}
+  </button>
 </div>

@@ -125,7 +125,9 @@ describe('Exercises', () => {
 
     // Klik w kolumnę „Exercise" (ten sam klucz) → odwrócenie kierunku na malejący.
     const header = fixture.debugElement.query(By.directive(ExerciseTableHeader));
-    const nameButton = (header.nativeElement.querySelectorAll('button') as NodeListOf<HTMLButtonElement>)[0];
+    const nameButton = (
+      header.nativeElement.querySelectorAll('button') as NodeListOf<HTMLButtonElement>
+    )[0];
     nameButton.click();
     fixture.detectChanges();
 

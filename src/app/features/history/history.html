@@ -4,11 +4,7 @@
     @for (day of trainingDays(); track day.id) {
       <!-- Każdy kafelek nawiguje do /workout z query param `id` (D1, D5) —
            odpowiednik `router.push({ pathname: '/workout', params: { id } })`. -->
-      <a
-        class="history__item"
-        [routerLink]="'/workout'"
-        [queryParams]="{ id: day.id }"
-      >
+      <a class="history__item" [routerLink]="'/workout'" [queryParams]="{ id: day.id }">
         <span class="history__date">{{ day.date }}</span>
         @if (day.note) {
           <span class="history__note">{{ day.note }}</span>

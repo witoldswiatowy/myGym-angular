@@ -49,10 +49,12 @@ export class WorkoutWeightUnitModal {
   // Aktualnie wybrana jednostka z danych dialogu — do podświetlenia aktywnej opcji.
   // `optional: true`, bo wołający może nie przekazać danych (wówczas `null`).
   protected readonly activeUnit =
-    inject<WorkoutWeightUnitModalData | null>(MAT_DIALOG_DATA, { optional: true })?.selected ?? null;
+    inject<WorkoutWeightUnitModalData | null>(MAT_DIALOG_DATA, { optional: true })?.selected ??
+    null;
 
   // Referencja dialogu — zastępuje callback `selectWeightUnit` z RN. Wynik to wybrany `WeightUnit`.
-  private readonly dialogRef = inject<MatDialogRef<WorkoutWeightUnitModal, WeightUnit>>(MatDialogRef);
+  private readonly dialogRef =
+    inject<MatDialogRef<WorkoutWeightUnitModal, WeightUnit>>(MatDialogRef);
 
   // Wybór opcji (RN: `selectWeightUnit(unit)`) → zamknięcie dialogu z wybraną jednostką.
   protected select(unit: WeightUnit): void {

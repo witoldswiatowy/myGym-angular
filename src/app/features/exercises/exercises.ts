@@ -16,7 +16,11 @@ import { ScreenComponent } from '../../core/layout/screen/screen';
 
 import { AddExerciseModal } from './components/add-exercise-modal/add-exercise-modal';
 import { ExerciseFormValues } from './components/exercise-form/exercise-form';
-import { ExerciseTableHeader, SortDir, SortKey } from './components/exercise-table-header/exercise-table-header';
+import {
+  ExerciseTableHeader,
+  SortDir,
+  SortKey,
+} from './components/exercise-table-header/exercise-table-header';
 import { ExerciseTableRow } from './components/exercise-table-row/exercise-table-row';
 
 // Ekran biblioteki ćwiczeń — odpowiednik `ExercisesScreen` (RN, `app/exercises/index.tsx`).

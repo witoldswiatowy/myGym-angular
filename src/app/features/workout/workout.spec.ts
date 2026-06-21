@@ -35,10 +35,28 @@ describe('Workout', () => {
   // Po jednej zapisanej serii na ćwiczenie (reszta dopełniana pustymi przez serwis).
   const setsByExerciseId: Record<string, WorkoutSet[]> = {
     we1: [
-      { id: 's1', workoutExerciseId: 'we1', index: 0, type: 'working', weight: 80, weightUnit: 'kg', reps: 8, done: false },
+      {
+        id: 's1',
+        workoutExerciseId: 'we1',
+        index: 0,
+        type: 'working',
+        weight: 80,
+        weightUnit: 'kg',
+        reps: 8,
+        done: false,
+      },
     ],
     we2: [
-      { id: 's2', workoutExerciseId: 'we2', index: 0, type: 'warmup', weight: 60, weightUnit: 'kg', reps: 10, done: false },
+      {
+        id: 's2',
+        workoutExerciseId: 'we2',
+        index: 0,
+        type: 'warmup',
+        weight: 60,
+        weightUnit: 'kg',
+        reps: 10,
+        done: false,
+      },
     ],
   };
 

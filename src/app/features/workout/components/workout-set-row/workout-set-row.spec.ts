@@ -41,9 +41,7 @@ describe('WorkoutSetRow', () => {
   }
 
   // Zwraca pola liczbowe inline (0 = ciężar, 1 = powtórzenia).
-  function numberInputs(
-    fixture: ComponentFixture<WorkoutSetRow>,
-  ): NodeListOf<HTMLInputElement> {
+  function numberInputs(fixture: ComponentFixture<WorkoutSetRow>): NodeListOf<HTMLInputElement> {
     return fixture.nativeElement.querySelectorAll(
       '.workout-set-row__number-input',
     ) as NodeListOf<HTMLInputElement>;

@@ -31,9 +31,8 @@ export class AddExerciseModal {
 
   // Referencja dialogu — zastępuje callbacki `onSave`/`onClose` z RN. Typ wyniku to
   // `ExerciseFormValues`, dzięki czemu wołający (ekran 023) odbierze go z `afterClosed()`.
-  private readonly dialogRef = inject<MatDialogRef<AddExerciseModal, ExerciseFormValues>>(
-    MatDialogRef,
-  );
+  private readonly dialogRef =
+    inject<MatDialogRef<AddExerciseModal, ExerciseFormValues>>(MatDialogRef);
 
   // Zapis (RN: `onSave`): zamknięcie dialogu z wartościami formularza. Faktyczne utworzenie
   // ćwiczenia (generacja ID, zapis przez repozytorium) realizuje wołający — krok 023.

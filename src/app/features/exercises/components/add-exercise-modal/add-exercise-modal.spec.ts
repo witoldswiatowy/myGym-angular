@@ -13,10 +13,7 @@ describe('AddExerciseModal', () => {
     dialogRef.close.mockClear();
     await TestBed.configureTestingModule({
       imports: [AddExerciseModal],
-      providers: [
-        provideNoopAnimations(),
-        { provide: MatDialogRef, useValue: dialogRef },
-      ],
+      providers: [provideNoopAnimations(), { provide: MatDialogRef, useValue: dialogRef }],
     }).compileComponents();
   });
 
