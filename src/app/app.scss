@@ -1,0 +1,11 @@
+// Powłoka: kolumna na całą wysokość okna — treść rośnie (flex:1),
+// pasek nawigacji ląduje u dołu. Bez safe-area (decyzja D4).
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-shell__content {
+  flex: 1;
+}

@@ -22,4 +22,11 @@ describe('App', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('router-outlet')).not.toBeNull();
   });
+
+  it('should render the tab bar', () => {
+    const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('app-tab-bar')).not.toBeNull();
+  });
 });

@@ -1,0 +1,56 @@
+@use '../../../theme/spacing' as spacing;
+
+// Kolory odwzorowane z domyślnego paska zakładek React Navigation / Expo Router
+// (źródło nie definiuje własnych kolorów paska w layout.style.ts — używamy domyślnych).
+$bar-bg: #fff;
+$bar-border: #e0e0e0;
+$inactive: #8e8e8f; // domyślny tabBarInactiveTintColor
+$active: #007aff; // domyślny tabBarActiveTintColor (iOS blue)
+
+:host {
+  display: block;
+}
+
+// Pasek u dołu powłoki: rząd równych pozycji, cienka górna krawędź. Bez safe-area (D4).
+.tab-bar {
+  display: flex;
+  flex-direction: row;
+  height: 56px;
+  border-top: 1px solid $bar-border;
+  background-color: $bar-bg;
+}
+
+// Pojedyncza pozycja — równy podział szerokości, treść wyśrodkowana (jak w RN).
+// Układ kolumnowy: ikona nad etykietą (parytet z Tabs z RN, D13).
+.tab-bar__item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: spacing.$xs 0;
+  color: $inactive;
+  font-size: 12px;
+  text-decoration: none;
+}
+
+// Aktywna pozycja (routerLinkActive) — kolor akcentu jak w RN dla focused.
+// Ikona dziedziczy kolor tekstu (currentColor), więc zmienia się razem z etykietą.
+.tab-bar__item--active {
+  color: $active;
+  font-weight: 600;
+}
+
+// Ikona Material — rozmiar zbliżony do paska RN; kolor z currentColor.
+.tab-bar__icon {
+  width: 24px;
+  height: 24px;
+  font-size: 24px;
+  line-height: 24px;
+  color: inherit;
+}
+
+.tab-bar__label {
+  line-height: 16px;
+}
