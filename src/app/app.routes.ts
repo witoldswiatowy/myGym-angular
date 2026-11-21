@@ -11,23 +11,19 @@ export const routes: Routes = [
   },
   {
     path: 'workout',
-    loadComponent: () =>
-      import('./features/workout/workout').then((m) => m.Workout),
+    loadComponent: () => import('./features/workout/workout').then((m) => m.Workout),
   },
   {
     path: 'exercises',
-    loadComponent: () =>
-      import('./features/exercises/exercises').then((m) => m.Exercises),
+    loadComponent: () => import('./features/exercises/exercises').then((m) => m.Exercises),
   },
   {
     path: 'history',
-    loadComponent: () =>
-      import('./features/history/history').then((m) => m.HistoryComponent),
+    loadComponent: () => import('./features/history/history').then((m) => m.HistoryComponent),
   },
   {
     path: 'planner',
-    loadComponent: () =>
-      import('./features/planner/planner').then((m) => m.Planner),
+    loadComponent: () => import('./features/planner/planner').then((m) => m.Planner),
   },
   {
     path: 'menu',
@@ -35,8 +31,7 @@ export const routes: Routes = [
   },
   {
     path: 'about-me',
-    loadComponent: () =>
-      import('./features/about-me/about-me').then((m) => m.AboutMe),
+    loadComponent: () => import('./features/about-me/about-me').then((m) => m.AboutMe),
   },
   // Nieznane ścieżki → ekran Home (path pusty).
   { path: '**', redirectTo: '' },

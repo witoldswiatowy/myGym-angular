@@ -57,13 +57,7 @@ describe('TabBar', () => {
       expect(icons.length).toBe(5);
 
       // Mapowanie ikon wg D13: Ionicons → Material Icons.
-      const expectedIcons = [
-        'home',
-        'fitness_center',
-        'history',
-        'calendar_month',
-        'menu',
-      ];
+      const expectedIcons = ['home', 'fitness_center', 'history', 'calendar_month', 'menu'];
       expectedIcons.forEach((name, i) => {
         expect(icons[i].textContent?.trim()).toBe(name);
       });
@@ -101,13 +95,9 @@ describe('TabBar', () => {
       fixture.detectChanges();
 
       const el = fixture.nativeElement as HTMLElement;
-      const links = Array.from(
-        el.querySelectorAll<HTMLAnchorElement>('a.tab-bar__item'),
-      );
+      const links = Array.from(el.querySelectorAll<HTMLAnchorElement>('a.tab-bar__item'));
       const home = links.find((l) => (l.textContent ?? '').includes('Home'));
-      const workout = links.find((l) =>
-        (l.textContent ?? '').includes('Workout'),
-      );
+      const workout = links.find((l) => (l.textContent ?? '').includes('Workout'));
 
       expect(workout?.classList.contains('tab-bar__item--active')).toBe(true);
       expect(home?.classList.contains('tab-bar__item--active')).toBe(false);

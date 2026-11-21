@@ -1,0 +1,27 @@
+{
+  "folders": [
+    {
+      "path": "../myGym",
+    },
+    {
+      "path": ".",
+    },
+    {
+      "path": "../myGym-backend",
+    },
+    {
+      "path": "../myGym-backend-quarkus",
+    },
+  ],
+  "settings": {
+    "chat.tools.terminal.autoApprove": {
+      "ng": true,
+      "java": true,
+      "Get-Command": true,
+      "mvnw": true,
+      "mvn": true,
+      "git add": true,
+      "git commit": true,
+    },
+  },
+}

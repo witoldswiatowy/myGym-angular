@@ -38,15 +38,7 @@ describe('app routes', () => {
   });
 
   it('każda trasa lazy ma zdefiniowany loadComponent', () => {
-    const expectedPaths = [
-      '',
-      'workout',
-      'exercises',
-      'history',
-      'planner',
-      'menu',
-      'about-me',
-    ];
+    const expectedPaths = ['', 'workout', 'exercises', 'history', 'planner', 'menu', 'about-me'];
     for (const path of expectedPaths) {
       const route = routeByPath(path);
       expect(route).toBeDefined();
